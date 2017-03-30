@@ -12,7 +12,7 @@ categories:
 
 When I decided to start working on this blog, in my mind I had two options:
 * Write it RAW from the ground up
-* Use a CMS like [WordPress](https://wordpress.org/) or [Joomla!](https://www.joomla.org/)
+* Use a Content Management System (CMS) like [WordPress](https://wordpress.org/) or [Joomla!](https://www.joomla.org/)
 
 As usual I took a bit of a pause to investigate before getting stuck in and I thus bumped into Static Website Generators. Suffice to say, I never looked back.
 
@@ -100,9 +100,11 @@ Advantages
 Disadvantages
 -------------
 * Initial stack setup and learning curve
-* Tooling is still maturing (a far cry from a CMS WYSIWYG editor)
+* ~~Tooling is still maturing (a far cry from a CMS WYSIWYG editor)~~
 
 Static Website Generators offer a great deal of benefits. There is a learning curve to them, primarily in terms of their initial setup and learning the Markdown syntax. They are not yet at a stage where they are as friendly as a CMS for the non-technical user. However they are growing in that direction. A beautiful example of this is the integrations between [github.io](http://github.io) and [Jekyll](http://jekyllrb.com/) which basically allows a user of github.io to create content by simply writing Markdown and committing it to GitHub. This then gets converted to HTML and published on github.io automatically. In the meantime, for those willing to put in the time to learn the ropes, there are great benefits to be had as I have hopefully managed to outline above.
+
+**UPDATE:** In writing the follow-up to this blog post I found a new project linked from StaticGen called [headlessCMS](http://headlesscms.org) which provides a list of CMSs for [JAMstack](http://jamstack.org) Sites. These projects are basically intended to add another layer on top of a Static Website Generator in order to provide a traditional CMS-like experience. They're bridging the gap between people with he required technical knowledge to use a Static Generator and people who are more accustomed to using a graphical CMS. I will definitely be looking at these in a future post and update you on my progress.
 
 I hope you've enjoyed this high-level introduction to Static Website Generators and why they are useful and that I have peaked your interest enough for you to want to try them out if you haven't already. In my next blog post, I will follow this up with a hands-on tutorial on how I setup this blog using the [Hexo](http://hexo.io) Static Website Generator.
 
