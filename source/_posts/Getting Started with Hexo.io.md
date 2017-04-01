@@ -19,14 +19,14 @@ Introduction
 
 This blog is hosted on [GitHub Pages](http://github.io) which offers free hosting of your content stored on your [GitHub Repository](http://github.com).
 
-For anyone starting out and planning to host his content on GitHub pages, I would recommend using their inbuilt [Jekyll](http://jekyllrb.com) integration. This will automatically create a skeleton Jekyll project for you and store it on your GitHub account. You can then manage your project as per usual using GitHub and have your content generated and deployed automatically for you via the Jekyll integration.
+For anyone starting out and planning to host his content on GitHub Pages, I would recommend using their inbuilt [Jekyll](http://jekyllrb.com) integration. This will automatically create a skeleton Jekyll project for you and store it on your GitHub account. You can then manage your project as per usual using GitHub and have your content generated and deployed automatically for you via the Jekyll integration.
 
-When I first started working on this blog, I was not yet committed to hosting it on GitHub Pages, plus the Jekyll integration was not yet there. I thus setup my own Static Website Generator and eventually deployed to GitHub Pages. I also decided to follow a similar paradigm and host the sources to my website on GitHub as well. Whether you plan to setup your own Static Website Generator in order to host your website somewhere other than GitHub pages, or whether you are doing this just to learn more about Static Website Generation, I still feel that this is an interesting exercise and I learned a lot whilst doing it.
+When I first started working on this blog, I was not yet committed to hosting it on GitHub Pages, plus the Jekyll integration was not yet there. I thus setup my own Static Website Generator and eventually deployed to GitHub Pages. I also decided to follow a similar paradigm and host the sources to my website on GitHub as well. Whether you plan to setup your own Static Website Generator in order to host your website somewhere other than GitHub Pages, or whether you are doing this just to learn more about Static Website Generation, I still feel that this is an interesting exercise and I learned a lot whilst doing it.
 
 Choosing a Static Website Generator
 -----------------------------------
 
-My hunt for a Static Website Generator started on [StaticGen](https://www.staticgen.com/). Here I ended up choosing Hexo. My main reason for opting for Hexo in lieu of something more popular like Jekyll is that Hexo is based on Node.js whereas Jekyll is based on Ruby. I have some Node.js experience but no experience with Ruby. Now as already discussed in my introduction to Static Generators, this does not really impact the experience. Both Generators use Markdown as a syntax for their content so their being based on different languages would really only have an impact at setup time. Seeing as my box had Node.js already setup and not wanted to overload it with Ruby and its dependencies, I decided to opt for Hexo. Again, one big advantage of using Markdown and a common syntax is that I can very easily migrate my content to a different Static Generator if I decide to do so.
+My hunt for a Static Website Generator started on [StaticGen](https://www.staticgen.com/). Here I ended up choosing Hexo. My main reason for opting for Hexo in lieu of something more popular like Jekyll is that Hexo is based on Node.js whereas Jekyll is based on Ruby. I have some Node.js experience but no experience with Ruby. As already discussed in my introduction to Static Generators, this does not really impact the user experience. Both Generators use Markdown as a syntax for their content so their being based on different languages would really only have an impact at setup time. Seeing as my development machine had Node.js already setup, and not wanting to overload it with Ruby and its dependencies, I decided to opt for Hexo. Again, one big advantage of using Markdown as a common syntax is that I can very easily migrate my content to a different Static Generator should I wish to do so.
 
 Hexo Setup
 ==========
@@ -105,13 +105,13 @@ Let's try that out now...
 hexo server --draft --open
 {% endcodeblock %}
 
-This should start our local test server and automatically kick up out default browser and point it to our new website for us. Pretty snazzy...
+This should start our local test server and automatically kick up our default browser and point it to our new website for us. Pretty snazzy...
 
 The **draft** option makes any draft posts we may have visible. These are not made visible by default and are not included in a normal deployment of our website.
 
 The **open** option is what triggers the automatic loading of the website in our browser as a convenience.
 
-An added perk is that the server will stay listening for changes to its sources and generate new content as we author our posts, meaning we will see our edits show up on our browser as we work without restarting the server. Awesome :)
+An added perk is BrowserSync support which allow the server to listen for changes to its sources and generate new content as we author our posts, meaning we will see our edits show up on our browser as we work without restarting the server. Awesome :)
 
 **Note:** This only applies to sources. Things like changes in configuration, installation of new plugins or themes, etc. will still require a restart of the server.
 
@@ -124,7 +124,7 @@ Time to start working on our first post...
 hexo new draft "Hello World"
 {% endcodeblock %}
 
-Hexo will now create a skeleton for our new "Hello World" post using its current setup scaffolds. The above command will return the full path to the file representing the new post. We can now open this file for editing and start working on it. As previously discussed, the syntax used is Markdown. For help in getting started with Markdown please refer to their documentation [here](http://daringfireball.net/projects/markdown/).
+Hexo will now create a skeleton for our new "Hello World" post using its current setup scaffolds. The above command will return the full path to the file representing the new post. We can now open this file for editing and start working on it. As previously discussed, the syntax used is Markdown. For help in getting started with Markdown please refer to the documentation [here](http://daringfireball.net/projects/markdown/).
 
 Remember that as we're editing we can see the output HTML in real-time in our browser instance thanks to the included BrowserSync support.
 
@@ -158,6 +158,7 @@ deploy:
   repo: https://github.com/powell-christopher/powell-christopher.github.io.git
   branch: master
   message: hexo deploy
+...
 {% endcodeblock %}
 
 Now that our configuration is in place, we can go ahead and deploy...
@@ -184,17 +185,19 @@ In this section we will cover some nice extras that will facilitate our authorin
 Maintain Sources in VCS
 -----------------------
 
-It is always a good idea to maintain our sources in a VCS solution. In my case I am using a GitHub repo.
+It is always a good idea to maintain our sources in a VCS solution. In my case I am using a GitHub repo. Let's go ahead and deploy our project to GitHub.
 
 {% codeblock Commit to git and push to remote %}
 hexo clean
 git init
-git add.
+git add --all
 git commit -m "Initial Commit"
 git remote add origin https://github.com/powell-christopher/powell-christopher.github.io.git
 git remote -v
 git push origin master
 {% endcodeblock %}
+
+In the above flow, we're starting with a **hexo clean** to delete any generated content since we don't want to store that with the sources. We then initialize git via a **git init** (since the project already exists). We now start working on our first commit. We basically add the whole directory (including subdirectories) containing our project via a **git add -all** and then commit the lot (locally) and specify a commit message. Now that the sources have been committed locally, we need to push the commit to the remote repo. To do that we first add the remote repo as an **origin** and finally we push to the **master** branch of our new **origin**.
 
 Now that our source project is safely stored, we can push to our remote repo whenever we have new changes to commit.
 
@@ -222,8 +225,10 @@ The above will create a **themes/next** directory and clone the theme source pro
 Now we need to instruct our hexo project to use the new theme. We just need to define the theme location in the configuration.
 
 {% codeblock _config.yml %}
+...
 # Extensions
 theme: next
+...
 {% endcodeblock %}
 
 At this point we can start our test server or redeploy our project and we should be using the new theme.
@@ -266,7 +271,7 @@ skip_render:
 ...
 {% endcodeblock %}
 
-Now that we have a categories page generated by Hexo, we need a way to navigate to it. To do that we need to modify the menu for our selected theme by modifying the theme configuration. In my case this lives in **themes/next/_config.yml**. We simply uncomment the **categories: /categories** key-value pair.
+Now that we have a categories page generated by Hexo, we need a way to navigate to it. To do that we need to modify the menu for our selected theme by modifying the theme configuration. In my case this lives in **themes/next/_config.yml**. We simply uncomment the **categories: /categories** key-value pair. It is important that the page name matches throughout.
 
 {% codeblock themes/next/_config.yml %}
 ...
