@@ -6,13 +6,15 @@
     "language": "en",
     // words - list of words to be always considered correct
     "words": [
-        "Chocolatey",
-        "distros",
-        "Redhat",
-        "NSIS",
-        "Inno",
         "choco",
-        "distro"
+        "Chocolatey",
+        "distro",
+        "distros",
+        "Inno",
+        "NSIS",
+        "Redhat",
+        "Vagrantfile",
+        "VMware"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
